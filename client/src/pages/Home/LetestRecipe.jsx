@@ -19,7 +19,7 @@ const LetestRecipe = () => {
 
   return (
     <div className=" px-5 xl:px-10 py-16">
-      <h2 className="text-3xl font-semibold text-secondary sm:text-5xl sm:leading-relaxed">
+      <h2 className="text-3xl font-semibold text-white sm:text-5xl sm:leading-relaxed">
         Latest recipe
       </h2>
 
@@ -36,7 +36,7 @@ const LetestRecipe = () => {
 
       <div className=" mt-16 mx-auto sm:w-64">
         <Link to="/recipes">
-          <button className=" py-4 px-8 hover:bg-btnColor text-secondary hover:text-white w-full transition ease-in  duration-200 text-center text-base font-semibold border border-[#9c702a] focus:outline-none rounded-lg ">
+          <button className=" py-4 px-8 hover:bg-btnColor text-white hover:text-white w-full transition ease-in  duration-200 text-center text-base font-semibold border border-[#9c702a] focus:outline-none rounded-lg ">
             View All Recipes
           </button>
         </Link>

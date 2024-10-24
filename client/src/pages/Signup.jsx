@@ -1,127 +1,112 @@
 import React, { useState } from "react";
+import Header from "../components/header/Header";
+import axios from "axios";
 
 const Signup = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  // const [fullname, setFullname] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
 
-  const toggleForm = () => {
-    setIsLogin(!isLogin);
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setData((data) => ({ ...data, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+   try {
+    const signup= await axios.post("http://localhost:5000/api/register",data)
+     console.log("User registered successfully: ", signup);
+     alert("User registered successfully. You can now log in.");
+     window.location.href = "/login";
+   } catch (error) {
+     console.error("Error signing up user: ", error);
+     alert("Error signing up user. Please try again later.");
+   }
+     
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#003366] via-[#004080] to-[#0073e6]">
-      <div className="w-full max-w-sm p-8 space-y-4 bg-white rounded-xl shadow-lg">
-        <div className="flex justify-between">
-          <h2
-            className={`text-2xl font-semibold ${
-              isLogin ? "text-blue-700" : ""
-            }`}
-          >
-          </h2>
-          <h2
-            className={`text-2xl font-semibold ${
-              !isLogin ? "text-blue-700" : ""
-            }`}
-          >
-          </h2>
-        </div>
-
-        <div className="relative flex items-center justify-between mt-8">
-          <div
-            className={`absolute w-1/2 h-full bg-gradient-to-r from-[#003366] via-[#004080] to-[#0073e6] rounded-full transition-transform duration-500 ease-in-out transform ${
-              isLogin ? "translate-x-0" : "translate-x-full"
-            }`}
-          ></div>
-          <button
-            className={`w-1/2 text-center p-2 text-lg font-medium ${
-              isLogin ? "text-white" : "text-gray-700"
-            }`}
-            onClick={toggleForm}
-          >
-            Login
-          </button>
-          <button
-            className={`w-1/2 text-center p-2 text-lg font-medium ${
-              !isLogin ? "text-white" : "text-gray-700"
-            }`}
-            onClick={toggleForm}
-          >
-            Signup
-          </button>
-        </div>
-
-        <div className="space-y-4">
-          {isLogin ? (
-            <form className="space-y-4">
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
-                  required
-                />
-              </div>
-              <div className="text-right">
-                <a href="#" className="text-blue-700 hover:underline">
-                  Forgot password?
-                </a>
-              </div>
-              <button className="w-full py-2 text-lg font-medium text-white bg-gradient-to-r from-[#003366] via-[#004080] to-[#0073e6] rounded-lg focus:outline-none">
-                Login
-              </button>
-              <div className="text-center">
-                Not a member?{" "}
-                <a
-                  href="#"
-                  onClick={toggleForm}
-                  className="text-blue-700 hover:underline"
-                >
-                  Signup now
-                </a>
-              </div>
-            </form>
-          ) : (
-            <form className="space-y-4">
-              <div>
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
-                  required
-                />
-              </div>
-              <div>
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-700"
-                  required
-                />
-              </div>
-              <button className="w-full py-2 text-lg font-medium text-white bg-gradient-to-r from-[#003366] via-[#004080] to-[#0073e6] rounded-lg focus:outline-none">
-                Signup
-              </button>
-            </form>
-          )}
+    <div>
+      <Header />
+      <div className="min-h-screen bg-[#111827] flex items-center justify-center">
+        <div className="bg-white p-6 rounded shadow-md w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block text-gray-700">Fullname</label>
+              <input
+                type="text"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                value={data.name}
+                name="name"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700">Email Address</label>
+              <input
+                type="email"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                value={data.email}
+                onChange={handleChange}
+                name="email"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-gray-700">Password</label>
+              <input
+                type="password"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+                value={data.password}
+                name="password"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            {/* <div className="mb-4">
+            <label className="block text-gray-700">Confirm Password</label>
+            <input
+              type="password"
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div> */}
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
+            >
+              Sign Up
+            </button>
+          </form>
+          <div className="flex justify-center items-center mt-6">
+            <button className="bg-red-500 text-white px-4 py-2 rounded mr-2">
+              Sign in with Google
+            </button>
+            <button className="bg-blue-700 text-white px-4 py-2 rounded">
+              Sign in with Facebook
+            </button>
+          </div>
+          <div className="mt-4 text-center">
+            <a href="/login" className="text-blue-500">
+              Already have an account? Sign In
+            </a>
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default Signup;

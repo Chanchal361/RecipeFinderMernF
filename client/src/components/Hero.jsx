@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <div className=" px-5 xl:px-10 md:w-1/2 mb-10 ">
       <h1 className=" mt-6 mb-10 text-5xl xl:text-6xl text-center font-bold text-[#edeef1] leading-normal xl:leading-relaxed ">
-        Search Recipe What You Like
+      Search for Your Favorite Recipes
       </h1>
 
       <form 

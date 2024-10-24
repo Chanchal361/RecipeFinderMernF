@@ -40,7 +40,9 @@ const CategoryPage = () => {
         </h1>
         <Category />
 
-        <ul className=" mt-20 grid grid-flow-col md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <ul className=" mt-20    
+        container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-4
+        ">
           {items && items.map((item) => <li key={item._id}><Card item={item} key={item._id}/></li>)}
         </ul>
       </div>

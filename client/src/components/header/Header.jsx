@@ -4,7 +4,7 @@ import Mobile from "./Mobile";
 import logo from "/logo.svg";
 
 const Header = () => {
-  const menuItem = ["recipe", "resources", "about", "contact"];
+  const menuItem = ["about", "contact"];
   const [hide, setHide] = useState("-left-[1000px]");
   const onOpen = () => {
     setHide("left-0");
