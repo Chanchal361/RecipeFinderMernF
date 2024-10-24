@@ -19,6 +19,15 @@ app.use("/api",ItemRoutes)
 const categoryControllers=require("./routes/categoryRoutes")
 app.use("/api",categoryControllers)
 
+// register user routes
+const userRoutes=require("./routes/user")
+
+app.use("/api", userRoutes)
+
+// login user routes
+const loginRoutes=require("./routes/user")
+app.use("/api", loginRoutes)
+
 app.listen(port, () => {
   connectDb(); // Connect to the MongoDB database
   console.log(`Server is running on port ${port}`);
