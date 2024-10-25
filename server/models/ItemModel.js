@@ -12,17 +12,6 @@ const ingredientsSchema = new Schema({
   },
 });
 
-const commentSchema = new Schema({
-  user: {
-    type: String,
-    required: true,
-  },
-  comment: {
-    type: String,
-    required: true,
-  },
-});
-
 const moreSchema = new Schema({
   prep_time: {
     type: String,
@@ -66,10 +55,6 @@ const ItemSchema = new Schema({
   tags: [String],
   ingredients: {
     type: [ingredientsSchema],
-    required: true,
-  },
-  comments: {
-    type: [commentSchema],
     required: true,
   },
   more: {

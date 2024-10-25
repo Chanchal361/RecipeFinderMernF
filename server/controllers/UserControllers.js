@@ -45,7 +45,7 @@ const loginUser = async (req, res) => {
         });
 
          res.json({ message: `Welcome ${userExists.name}`, user: userExists,token ,userId:userExists._id});
-         console.log("Signed in successfully")
+        //  console.log("Signed in successfully")
         
     }
   } catch (error) {

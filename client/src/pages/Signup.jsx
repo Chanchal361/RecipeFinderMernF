@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/header/Header";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   // const [fullname, setFullname] = useState("");
@@ -22,16 +23,19 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   try {
-    const signup= await axios.post("http://localhost:5000/api/register",data)
-     console.log("User registered successfully: ", signup);
-     alert("User registered successfully. You can now log in.");
-     window.location.href = "/login";
-   } catch (error) {
-     console.error("Error signing up user: ", error);
-     alert("Error signing up user. Please try again later.");
-   }
-     
+    try {
+      const signup = await axios.post(
+        "http://localhost:5000/api/register",
+        data
+      );
+      // console.log("User registered successfully: ", signup);
+      // toast.success(sign.data.message)
+      // alert("User registered successfully. You can now log in.");
+      window.location.href = "/login";
+    } catch (error) {
+      console.error("Error signing up user: ", error);
+      alert("Error signing up user. Please try again later.");
+    }
   };
 
   return (

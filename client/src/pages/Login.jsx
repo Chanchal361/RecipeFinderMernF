@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import Header from "../components/header/Header";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import {useCookies} from 'react-cookie'
- 
-const Login = () => {
+import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-  const [_,setCookie]=useCookies("access_token")
-  const nagivate=useNavigate();
+const Login = () => {
+  const [_, setCookie] = useCookies("access_token");
+  const nagivate = useNavigate();
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -21,19 +22,21 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-   try {
-    const response= await axios.post("http://localhost:5000/api/login",data)
-     console.log("User Login successfully:");
-     console.log(response.data);
-     setCookie("access_token",response.data.token);
-     window.localStorage.setItem("User Id",response.data.userId);
-      nagivate("/")
-
-   
-   } catch (error) {
-       console.error(error)
-   }
-     
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/login",
+        data
+      );
+      //  console.log("User Login successfully:");
+      toast.success(response.data.message);
+      console.log(response.data);
+      setCookie("access_token", response.data.token);
+      window.localStorage.setItem("User Id", response.data.userId);
+      nagivate("/");
+    } catch (error) {
+      console.error(error);
+      toast.error("use id ");
+    }
   };
 
   return (
