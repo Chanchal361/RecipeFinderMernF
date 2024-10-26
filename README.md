@@ -30,7 +30,7 @@ This is a simple and intuitive recipe finder application built using the MERN st
 - **Node.js**: JavaScript runtime for server-side logic.
 - **Axios**: For making HTTP requests.
 - **Redux**: For state management (optional).
-- **Bootstrap**: For responsive styling.
+- **Tailwind**: For responsive styling.
 
 ## Installation
 
