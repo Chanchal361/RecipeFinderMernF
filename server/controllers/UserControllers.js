@@ -13,7 +13,6 @@ const registerUser = async (req, res) => {
     if (userExists) {
       return res.status(400).json({ message: "User already exists" });
     } else {
-      console.log("Login Page Not Found");
       // Save user to the database
       const hashPassword = await bcrypt.hash(password, 10);
       const user = new User({ name, email, password: hashPassword });
