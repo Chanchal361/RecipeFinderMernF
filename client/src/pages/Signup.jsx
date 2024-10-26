@@ -25,7 +25,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const signup = await axios.post(
-        "http://localhost:5000/api/register",
+        "https://recipefindermern-fp5v.onrender.com/api/register",
         data
       );
       // console.log("User registered successfully: ", signup);

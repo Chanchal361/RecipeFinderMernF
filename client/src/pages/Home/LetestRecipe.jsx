@@ -10,7 +10,9 @@ const LetestRecipe = () => {
   useEffect(() => {
     // fetch data from API
     const getLatest = async () => {
-      const response = await axios.get("http://localhost:5000/api/all-items");
+      const response = await axios.get(
+        "https://recipefindermern-fp5v.onrender.com/api/all-items"
+      );
 
       setItems(response.data);
     };

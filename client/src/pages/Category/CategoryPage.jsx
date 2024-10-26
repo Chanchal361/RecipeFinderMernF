@@ -17,7 +17,7 @@ const CategoryPage = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/categories/${category}`
+          `https://recipefindermern-fp5v.onrender.com/api/categories/${category}`
         );
 
         setItems(response.data);
@@ -40,13 +40,20 @@ const CategoryPage = () => {
         </h1>
         <Category />
 
-        <ul className=" mt-20    
+        <ul
+          className=" mt-20    
         container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-4
-        ">
-          {items && items.map((item) => <li key={item._id}><Card item={item} key={item._id}/></li>)}
+        "
+        >
+          {items &&
+            items.map((item) => (
+              <li key={item._id}>
+                <Card item={item} key={item._id} />
+              </li>
+            ))}
         </ul>
       </div>
-    </div> 
+    </div>
   );
 };
 

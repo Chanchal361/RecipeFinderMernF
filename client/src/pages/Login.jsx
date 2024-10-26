@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/login",
+        "https://recipefindermern-fp5v.onrender.com/api/login",
         data
       );
       //  console.log("User Login successfully:");

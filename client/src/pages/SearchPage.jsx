@@ -26,9 +26,12 @@ const SearchPage = () => {
     const fetchItem = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/items`, {
-          params: { q: query },
-        });
+        const response = await axios.get(
+          `https://recipefindermern-fp5v.onrender.com/api/items`,
+          {
+            params: { q: query },
+          }
+        );
         setResults(response.data);
       } catch (error) {
         setError(error.message || "Error getting");
